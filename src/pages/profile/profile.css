@@ -1,0 +1,102 @@
+.profile-container{
+    height: 300px;
+    display: grid;
+    grid-template-columns: 1fr 2fr;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    padding: 0px 30px;
+}
+.profile-container .contect-info{
+    border: 1px solid gray;
+    padding: 12px;
+    height: 80%;
+}
+.profile h1, .order-container h1{
+    font-size: 2rem;
+    color: #000;
+    font-family: 'poppins', sans-serif;
+    font-weight: 600;
+    text-align: center;
+    margin-top: 20px;
+}
+.contect-info .head, .address-book .head{
+    display: flex;
+    gap: 10px;
+    width: fit-content;
+}
+.contect-info .head h2, .address-book .head h2{
+    font-size: 1.2rem;
+    font-family: 'poppins', sans-serif;
+    font-weight: 600;
+}
+.contect-info .head span:first-child{
+    color: gray;
+}
+
+
+/* Address-Book */
+.address-book{
+    border: 1px solid gray;
+    padding: 12px;
+    height: 80%;
+}
+.address-book .head button{
+    color: #1a9cb7;
+}
+.address-book .data{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    margin-top: 10px;
+}
+.address-book .shipping-address{
+    border-right: 1px solid gray;
+    margin-right: 20px;
+}
+.address{
+    display: flex;
+    flex-direction: column;
+}
+/* edit */
+.data input{
+    border-bottom: 1px solid black;
+}
+
+
+/* Orders Section */
+
+.orders{
+    border: 1px solid gray;
+    width: calc(100vw - 60px);
+    height: 200px;
+    margin: auto;
+}
+.orders .table-heading{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    text-align: center;
+    background-color: gray;
+}
+
+@media screen and (max-width: 768px){
+    .profile-container{
+        display: flex;
+        flex-direction: column;
+        height: auto;
+        margin: 0px 8px;
+        padding: 0px;
+        align-items: normal;
+        
+    }
+    .address-book > .data{
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+    }
+    .address-book .shipping-address{
+        border: none;
+    }
+    .orders{
+        width: calc(100vw - 16px);
+    }
+}

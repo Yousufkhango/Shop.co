@@ -1,0 +1,66 @@
+.hero{
+    width: 100%;
+    height: 85vh;
+    background-color: #F2F0F1;
+    display: flex;
+    padding: 0px 34px;
+}
+.hero .hero_text{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 32px;
+}
+.hero .hero_text h1{
+    font-size: 3rem;
+    font-weight: 900;
+    font-family: 'popins', sans-serif;
+    color: #000;
+}
+.hero_text p{
+    color: #000;
+    width: 70%;
+}
+.hero_text button{
+    width: fit-content;
+    background-color: black;
+    color: white;
+    border-radius: 25px;
+    padding: 25px 50px;
+}
+.hero .hero_img{
+    width: 50%;
+    height: 100%;
+    display: flex;
+    justify-content: end;
+    align-items: end;
+}
+.hero .hero_img img{
+    max-height: 100%;
+}
+
+@media screen and (max-width: 768px){
+    .hero{
+        flex-direction: column;
+        padding: 0px;
+        height: auto;
+        
+    }
+    
+    .hero .hero_text{
+        width: auto;
+        padding: 15px;
+        gap: 3px;
+    }
+    .hero .hero_text h1{
+        font-size: 2rem;
+    }
+    .hero .hero_text p{
+        width: 100%;
+    }
+    .hero .hero_img{
+        width: 100%;
+    }
+    
+}

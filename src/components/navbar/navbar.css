@@ -1,0 +1,43 @@
+.navbar{
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    min-height: fit-content;
+}
+.navbar > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.second-nav-sec > ul{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    gap: 12px;
+}
+
+@media screen and (max-width: 768px){
+    .navbar{
+        width: 100%;
+        display: flex;
+        margin: 0;
+    }
+    .navbar > div:nth-child(1){
+        min-width: 100px;
+        width: 100px;
+        margin-right: auto;
+    }
+    .navbar > div:nth-child(2) label{
+        height: 35px;
+        width: 100px;
+
+    }
+    .navbar > div:nth-child(3) label:focus-within{
+        height: 35px;
+        width: 100%;
+    }
+    
+}

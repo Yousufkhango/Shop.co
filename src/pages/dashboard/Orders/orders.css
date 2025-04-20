@@ -1,0 +1,31 @@
+.order-cont {
+    width: 90%;
+    margin: auto;
+}
+
+.order-cont .box-sec {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+    margin: 23px 0px;
+}
+
+.order-cont .box-sec>div {
+    background-color: rgba(0, 0, 0, 0.900);
+    text-align: center;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    font-weight: 700;
+    border-radius: 20px;
+}
+
+.orders-sec{
+    border: 1px solid gray;
+}
+.orders-sec > div:first-child, .orders-sec > div >div{
+    display: flex;
+    justify-content: space-around;
+}

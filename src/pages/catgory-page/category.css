@@ -1,0 +1,22 @@
+.category-container a{
+    width: fit-content;
+    display: block;
+}
+.category-container{
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    width: fit-content;
+    gap: 20px;
+    margin: auto;
+}
+@media screen and (max-width: 1200px) {
+    .category-container{
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+}
+@media screen and (max-width: 750px) {
+    .category-container{
+        grid-template-columns: 1fr 1fr;
+        justify-content: space-around;
+    }
+}

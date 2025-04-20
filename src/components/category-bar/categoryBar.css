@@ -1,0 +1,10 @@
+.categoryBar{
+    width: fit-content;
+    display: flex;
+    font-weight: 900;
+    gap: 32px;
+    padding: 23px;
+    margin: auto;
+    max-width: 100vw;
+    overflow: auto;
+}
