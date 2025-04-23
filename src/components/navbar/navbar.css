@@ -1,6 +1,6 @@
 .navbar{
-    display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
+    display: flex;
+    justify-content: space-between;
     width: 90%;
     max-width: 1200px;
     margin: 0 auto;

@@ -13,7 +13,7 @@ const Body = () => {
   const dispatch = useDispatch();
   useEffect(() => {
     appwriteService.getProducts().then((res) => {
-      // setProducts(res.documents)
+      setProducts(res.documents)
       dispatch(addProducts(res.documents));
     });
     setProducts(productsToShow.products?.filter((p) => p.productName.toLowerCase().includes(search) || p.description.toLowerCase().includes(search)));

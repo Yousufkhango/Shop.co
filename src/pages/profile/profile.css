@@ -36,12 +36,15 @@
 
 
 /* Address-Book */
+.address-container{
+    height: 80%;
+}
 .address-book{
     border: 1px solid gray;
     padding: 12px;
-    height: 80%;
+    height: 100%;
 }
-.address-book .head button{
+.address-book .head > button{
     color: #1a9cb7;
 }
 .address-book .data{

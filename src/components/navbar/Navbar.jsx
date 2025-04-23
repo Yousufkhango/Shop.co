@@ -10,7 +10,9 @@ import './navbar.css'
 function Navbar() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-    const cart = useSelector((state)=> state.cart)
+    const path = window.location.pathname.split('/')[1]
+    console.log('pathName',path)
+    const cart = useSelector((state) => state.cart)
     console.log('cart', cart)
     const searchInputRef = useRef(null);
     const auth = useSelector((state) => state.auth)
@@ -53,21 +55,24 @@ function Navbar() {
     return (
         <>
             {
-                pathname == '/dashboard' || pathname == '/dashboard/add-item' || pathname == '/dashboard/add-category'?
+                pathname == '/dashboard' || pathname == '/dashboard/add-item' || pathname == '/dashboard/add-category' ?
                     null :
                     <div className="navbar">
                         <div className="first-nav-sec">
                             <Logo />
                         </div>
-                        
-                        <div className="third-nav-sec" >
-                            <label className="input rounded-2xl">
-                                <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2.5" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></g></svg>
-                                <input type="search" className="grow" placeholder="Search" ref={searchInputRef} onChange={serachFilter} />
-                                {breakPoint >= '1024' ? <kbd className="kbd kbd-sm">ctrl</kbd> : null}
-                                {breakPoint >= '1024' ? <kbd className="kbd kbd-sm">K</kbd> : null}
-                            </label>
-                        </div>
+
+                        {
+                            pathname != '/login' && pathname != '/sign-up' && pathname != '/' && pathname != '/profile' && pathname != '/cart' && path != 'item' && path != 'order' && pathname != '/contact-us' && pathname != '/help' && pathname != '/shiping-delivery' && pathname != '/return' && pathname != '/privacy-policy' && pathname != '/terms-condition' && pathname != '/cookie-policy' && pathname != '/payment-methods' && pathname != '/physical-address' && pathname != '/store-hours' && pathname != '/phone-number'?
+                                <div className="third-nav-sec" >
+                                    <label className="input rounded-2xl">
+                                        <svg className="h-[1em] opacity-50" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><g strokeLinejoin="round" strokeLinecap="round" strokeWidth="2.5" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><path d="m21 21-4.3-4.3"></path></g></svg>
+                                        <input type="search" className="grow" placeholder="Search" ref={searchInputRef} onChange={serachFilter} />
+                                        {breakPoint >= '1024' ? <kbd className="kbd kbd-sm">ctrl</kbd> : null}
+                                        {breakPoint >= '1024' ? <kbd className="kbd kbd-sm">K</kbd> : null}
+                                    </label>
+                                </div> : null
+                        }
 
                         <div className="forth-nav-sec">
                             <div className="dropdown dropdown-end">
@@ -84,7 +89,7 @@ function Navbar() {
                                         <span className="text-lg font-bold">{cart.items.length} Items</span>
                                         <span className="text-info">Subtotal: {cart.totalPrice}</span>
                                         <div className="card-actions">
-                                            <button className="btn btn-primary btn-block" onClick={()=>navigate('/cart')}>View cart</button>
+                                            <button className="btn btn-primary btn-block" onClick={() => navigate('/cart')}>View cart</button>
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +113,6 @@ function Navbar() {
                                             <span className="badge">New</span>
                                         </a>
                                     </li>
-                                    <li><a>Settings</a></li>
                                     <li>{auth.status ? <LogoutBtn /> : <a href='/login' className='text-green-500'>Login</a>}</li>
                                 </ul>
                             </div>

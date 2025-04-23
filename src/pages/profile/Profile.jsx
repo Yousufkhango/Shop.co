@@ -69,6 +69,12 @@ function Profile() {
             phone: userAddress?.phone || "",
         },
     });
+    const [addData, setAddData] = useState(false)
+    useEffect(() => {
+        if (userAddress) {
+            setAddData(true)
+        }
+    }, [userAddress])
 
     const update = (data) => {
         if (userAddress) {
@@ -117,103 +123,119 @@ function Profile() {
                         </div>
                     </div>
                     {
-                        !userAddress || editable ? <div className='address-book'>
-                            <form action={handleSubmit(update)}>
-                                <div className='head'>
-                                    <h2>Address Book</h2><span>|</span><button onClick={() => setEditable(false)}>CANCEL</button><button type="submit">UPDATE</button>
-                                </div>
-                                <div className='data'>
-                                    <div className='shipping-address'>
-                                        <div className="address">
-                                            <label htmlFor="shipping_address">Shipping Address:</label>
-                                            <input
-                                                type="text"
-                                                id="shipping_address"
-                                                maxLength="49"
-                                                {...register('shipping_address', { required: true })}
-                                            />
-                                            {errors.address && <p className="error">Shipping Address is required</p>}
-                                        </div>
-                                        <div className="city">
-                                            <label htmlFor="city">City:</label>
-                                            <select id="city" {...register('city', { required: true })} className="bg-base-100">
-                                                <option> select City</option>
-                                                {tcsCities.map((item) => (
-                                                    <option key={nanoid} value={item.city}>
-                                                        {item.city}
-                                                    </option>
-                                                ))}
-                                            </select>
-                                            {errors.city && <p className="error">City is required</p>}
-                                        </div>
-                                        <div className="country">
-                                            <label htmlFor="country">City:</label>
-                                            <select id="country" {...register('country', { required: true })} className="bg-base-100">
-                                                <option> select Country</option>
-                                                <option value="Pakistan">Pakistan</option>
-                                            </select>
-                                            {errors.country && <p className="error">Country is required</p>}
-                                        </div>
-
-                                        <div className="postal_code">
-                                            <label htmlFor="postal_code">Postal Code: </label>
-                                            <input
-                                                type="text"
-                                                id="postal_code"
-                                                maxLength="49"
-                                                {...register('postal_code', { required: true })}
-                                            />
-                                            {errors.address && <p className="error">Postal Code is required</p>}
-                                        </div>
-                                        <div className="phone">
-                                            <label htmlFor="phone">Phone Number: </label>
-                                            <input
-                                                type="phone"
-                                                id="phone"
-                                                maxLength="49"
-                                                {...register('phone', { required: true })}
-                                            />
-                                            {errors.phone && <p className="error">Phone Number is required</p>}
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div> : <div className='address-book'>
-                            <div className='head'>
-                                <h2>Address Book</h2><span>|</span><button onClick={() => setEditable(true)}>EDIT</button>
-                            </div>
-                            <div className='data'>
-                                <div className='shipping-address'>
-                                    <div className="address">
-                                        <span>Shiping Address: </span>
-                                        <span>{userAddress.shipping_address}, {userAddress.city}, {userAddress.country}</span>
-                                    </div>
-                                    <div className="postal-code">
-                                        <span>Postal Address: </span>
-                                        <span>{userAddress.postal_code}</span>
-                                    </div>
-                                    <div className="phone">
-                                        <span>Phone Number: </span>
-                                        <span>{userAddress.phone}</span>
-                                    </div>
+                        !addData ?
+                            <div className='address-book'>
+                                <div className='head flex align-middle justify-center flex-col m-auto'>
+                                    <h2>Address Book</h2>
+                                    <div><button className='btn bg-black text-white rounded-full' onClick={() => setAddData(true)}>ADD ADDRESS</button></div>
                                 </div>
 
-                                <div className='billing-address'>
-                                    <div className="address">
-                                        <span>Billing Address: </span>
-                                        <span>{userAddress.shipping_address}</span>
-                                    </div>
-                                    <div className="postal-code">
-                                        <span>Postal Code: </span>
-                                        <span>{userAddress.postal_code}</span>
-                                    </div>
-                                    <div className="phone">
-                                        <span>Phone Number: </span>
-                                        <span>{userAddress.phone}</span>
-                                    </div>
-                                </div>
                             </div>
-                        </div>
+                            :
+                            <div className='address-container'>
+                                {
+                                    !userAddress || editable ?
+                                        <div className='address-book'>
+                                            <form action={handleSubmit(update)}>
+                                                <div className='head'>
+                                                    <h2>Address Book</h2><span>|</span><button onClick={() => setEditable(false)}>CANCEL</button><button type="submit">UPDATE</button>
+                                                </div>
+                                                <div className='data'>
+                                                    <div className='shipping-address'>
+                                                        <div className="address">
+                                                            <label htmlFor="shipping_address">Shipping Address:</label>
+                                                            <input
+                                                                type="text"
+                                                                id="shipping_address"
+                                                                maxLength="49"
+                                                                {...register('shipping_address', { required: true })}
+                                                            />
+                                                            {errors.address && <p className="error">Shipping Address is required</p>}
+                                                        </div>
+                                                        <div className="city">
+                                                            <label htmlFor="city">City:</label>
+                                                            <select id="city" {...register('city', { required: true })} className="bg-base-100">
+                                                                <option> select City</option>
+                                                                {tcsCities.map((item) => (
+                                                                    <option key={nanoid} value={item.city}>
+                                                                        {item.city}
+                                                                    </option>
+                                                                ))}
+                                                            </select>
+                                                            {errors.city && <p className="error">City is required</p>}
+                                                        </div>
+                                                        <div className="country">
+                                                            <label htmlFor="country">City:</label>
+                                                            <select id="country" {...register('country', { required: true })} className="bg-base-100">
+                                                                <option> select Country</option>
+                                                                <option value="Pakistan">Pakistan</option>
+                                                            </select>
+                                                            {errors.country && <p className="error">Country is required</p>}
+                                                        </div>
+
+                                                        <div className="postal_code">
+                                                            <label htmlFor="postal_code">Postal Code: </label>
+                                                            <input
+                                                                type="text"
+                                                                id="postal_code"
+                                                                maxLength="49"
+                                                                {...register('postal_code', { required: true })}
+                                                            />
+                                                            {errors.address && <p className="error">Postal Code is required</p>}
+                                                        </div>
+                                                        <div className="phone">
+                                                            <label htmlFor="phone">Phone Number: </label>
+                                                            <input
+                                                                type="phone"
+                                                                id="phone"
+                                                                maxLength="49"
+                                                                {...register('phone', { required: true })}
+                                                            />
+                                                            {errors.phone && <p className="error">Phone Number is required</p>}
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                        :
+                                        <div className='address-book'>
+                                            <div className='head'>
+                                                <h2>Address Book</h2><span>|</span><button onClick={() => setEditable(true)}>EDIT</button>
+                                            </div>
+                                            <div className='data'>
+                                                <div className='shipping-address'>
+                                                    <div className="address">
+                                                        <span>Shiping Address: </span>
+                                                        <span>{userAddress.shipping_address}, {userAddress.city}, {userAddress.country}</span>
+                                                    </div>
+                                                    <div className="postal-code">
+                                                        <span>Postal Address: </span>
+                                                        <span>{userAddress.postal_code}</span>
+                                                    </div>
+                                                    <div className="phone">
+                                                        <span>Phone Number: </span>
+                                                        <span>{userAddress.phone}</span>
+                                                    </div>
+                                                </div>
+
+                                                <div className='billing-address'>
+                                                    <div className="address">
+                                                        <span>Billing Address: </span>
+                                                        <span>{userAddress.shipping_address}</span>
+                                                    </div>
+                                                    <div className="postal-code">
+                                                        <span>Postal Code: </span>
+                                                        <span>{userAddress.postal_code}</span>
+                                                    </div>
+                                                    <div className="phone">
+                                                        <span>Phone Number: </span>
+                                                        <span>{userAddress.phone}</span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                }
+                            </div>
                     }
                 </div>
             </div >

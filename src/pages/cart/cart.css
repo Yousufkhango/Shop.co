@@ -80,7 +80,6 @@
     font-weight: 700;
 }
 .orderSummary .ammounts>div>span:first-child {
- color: rgb(0, 0, 0, 0.6);
     font-size: 1rem;
     font-weight: 500;
     font-family: poppins, sans-serif;   
@@ -106,6 +105,10 @@
 }
 .checkout button:active{
     transform: scale(0.98);
+}
+.checkout button:disabled{
+    background-color: gray;
+    cursor: not-allowed;
 }
 
 @media screen and (max-width: 768px){

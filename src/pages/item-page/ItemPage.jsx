@@ -91,11 +91,11 @@ function ItemPage() {
         <div className="item-page">
             {isAuthor && (
                 <div className="editDelBtn">
-                    <Link to={`/edit-post/${item.$id}`} className="edit">
+                    {/* <Link to={`/edit-post/${item.$id}`} className="edit">
                         <button>
                             Edit <i class="fa fa-edit" />
                         </button>
-                    </Link>
+                    </Link> */}
                     <button onClick={deletePost} className="delete">
                         Delete <i class="fa fa-trash-o"></i>
                     </button>
@@ -144,7 +144,7 @@ function ItemPage() {
                         <p>{item.description}</p>
                     </div>
                     {
-                        isInCart ? <p className='item-added'>Item Added !</p> : <div className="order-btns">
+                        isInCart ? <button onClick={()=>navigate('/cart')} className='item-added'>GO TO CHECKOUT !</button> : <div className="order-btns">
 
                             <div className="qty">
                                 <button onClick={handleDecrement}>−</button>
