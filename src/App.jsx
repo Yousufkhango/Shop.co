@@ -7,6 +7,7 @@ import { useSelector } from 'react-redux'
 
 function App() {
   const pathname = useLocation().pathname
+  const path = window.location.pathname.split('/')[1]
   const user = useSelector((state) => state.auth.userData)
 
   console.log('user', user)
@@ -21,7 +22,7 @@ function App() {
           pathname == "/" ? <Hero /> : null
         }
         {
-          pathname == "/" || pathname == '/shop' ? <CategoryBar /> : null
+          pathname == "/" || pathname == '/shop' || path == "category"? <CategoryBar /> : null
         }
       </header>
       <main>

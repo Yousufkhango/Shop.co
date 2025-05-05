@@ -56,7 +56,7 @@ function Profile() {
         { city: "Usta Muhammad", province: "Balochistan", charges: 250 },
         { city: "Layyah", province: "Punjab", charges: 250 }
     ];
-
+    const [orders, setOrders] = useState([])
     const dispatch = useDispatch()
     const user = useSelector((state) => state.auth.userData);
     const userAddress = useSelector((state) => state.auth.userAddress);
@@ -76,6 +76,13 @@ function Profile() {
         }
     }, [userAddress])
 
+    useEffect(() => {
+        if (user) {
+            appwriteService.getOrders([Query.equal('user_id', user.$id)]).then((res) => {
+                setOrders(res.documents)
+            })
+        }
+    }, [user])
     const update = (data) => {
         if (userAddress) {
             appwriteService.updateUser(userAddress.$id, {
@@ -93,6 +100,17 @@ function Profile() {
         }
     }
 
+
+
+    console.log('orders', orders)
+
+    const formatDate = (isoString) => {
+        const date = new Date(isoString);
+        const day = String(date.getDate()).padStart(2, '0');
+        const month = String(date.getMonth() + 1).padStart(2, '0'); // Months are 0-indexed
+        const year = String(date.getFullYear()).slice(-2); // Get last two digits
+        return `${day}/${month}/${year}`;
+    };
     return (
 
         <div className="profile-page">
@@ -241,13 +259,45 @@ function Profile() {
             </div >
 
             <div className="order-container">
-                <h1>Recent Orders</h1>
-                <div className="orders">
-                    <div className='table-heading'>
-                        <div>Order#</div>
-                        <div>Plced On</div>
-                        <div>Items</div>
-                        <div>Total</div>
+        
+                <div className="p-6">
+                    <h2 className="text-3xl font-bold text-center mb-6">Recent Orders</h2>
+                    <div className="overflow-x-auto">
+                        {orders.length > 0 ? (
+                            <table className="min-w-full bg-white border border-gray-300 rounded-lg">
+                                <thead>
+                                    <tr className="bg-black text-white text-left">
+                                        <th className="py-3 px-4">Order#</th>
+                                        <th className="py-3 px-4">Placed On</th>
+                                        <th className="py-3 px-4">Items</th>
+                                        <th className="py-3 px-4">Total</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {orders.map((order, index) => (
+                                        <tr
+                                            key={index}
+                                            className="border-t border-gray-200 hover:bg-gray-50 transition"
+                                        >
+                                            <td className="py-3 px-4">...{order.$id.slice(-6)}</td>
+                                            <td className="py-3 px-4">{formatDate(order.$createdAt)}</td>
+                                            <td className="py-3 px-4">
+                                                {order.items.map((item) => (
+                                                    <div key={item.id}>
+                                                        {JSON.parse(item).item.qty}x {JSON.parse(item).item.productName}
+                                                    </div>
+                                                ))}
+                                            </td>
+                                            <td className="py-3 px-4">{order.totalPrice}</td>
+                                        </tr>
+                                    ))}
+                                </tbody>
+                            </table>
+                        ) : (
+                            <div className="text-center text-gray-500 py-10 border border-gray-300 rounded-lg">
+                                No recent orders found.
+                            </div>
+                        )}
                     </div>
                 </div>
             </div>

@@ -14,6 +14,8 @@ const Home = () => {
   const user = useSelector((state) => state.auth.userData);
   const userAddress = useSelector((state) => state.auth.userAddress);
   useEffect(() => {
+    document.title = "SHOP.CO | E-COMMERCE STORE";
+
     if (userAddress === null && user) {
       appwriteService.getUsers([Query.equal('user_id', user?.$id)]).then((res) => {
         if (res.documents.length > 0) {

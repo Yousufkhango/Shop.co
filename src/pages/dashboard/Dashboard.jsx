@@ -5,7 +5,7 @@ import { AddItemForm, Orders, AddCategoryForm } from './index'
 import { Logo } from '../../components'
 function Dashboard({ enable }) {
     const navigate = useNavigate()
-
+    useEffect(() => {    document.title = "Dashboard | SHOP.CO";})
     
     return (
         <>

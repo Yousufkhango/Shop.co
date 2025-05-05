@@ -33,7 +33,7 @@ const Body = () => {
               <h1>NEW ARRIVALS</h1>
               <div className="container-sec">
 
-                {products?.slice(0, 4).map((product) => {
+                {products?.slice(-4).map((product) => {
                   return (
                     <PostCard
                       key={product.$id}
@@ -49,7 +49,7 @@ const Body = () => {
           }
           <div className="divider" />
           <section id="first" className="border-2">
-            <h1>LATEST IN MEN</h1>
+            <h1>LATEST IN MEN's</h1>
             <div className="container-sec">
               {products?.filter((p) => p.category == 'men').map((product) => {
                 return (
@@ -60,7 +60,48 @@ const Body = () => {
                 );
               })}
             </div>
+            <div className="action-btn">
+              <button className="see-all" onClick={() => navigate('/category/men')}>See All</button>
+            </div>
           </section>
+
+          <div className="divider" />
+
+          <section id="second" className="border-2">
+            <h1>LATEST IN WOMEN's</h1>
+            <div className="container-sec">
+              {products?.filter((p) => p.category == 'women').map((product) => {
+                return (
+                  <PostCard
+                    key={product.$id}
+                    {...product}
+                  />
+                );
+              })}
+            </div>
+            <div className="action-btn">
+              <button className="see-all" onClick={() => navigate('/category/men')}>See All</button>
+            </div>
+          </section>
+          <div className="divider" />
+
+          <section id="second" className="border-2">
+            <h1>LATEST IN KIDS</h1>
+            <div className="container-sec">
+              {products?.filter((p) => p.category == 'kids').map((product) => {
+                return (
+                  <PostCard
+                    key={product.$id}
+                    {...product}
+                  />
+                );
+              })}
+            </div>
+            <div className="action-btn">
+              <button className="see-all" onClick={() => navigate('/category/men')}>See All</button>
+            </div>
+          </section>
+
         </div>
       )}
     </>

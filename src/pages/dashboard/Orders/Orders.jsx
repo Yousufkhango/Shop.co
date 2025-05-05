@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import appwriteService from '../../../appwrite/config'
 import './orders.css'
+import { useNavigate } from 'react-router-dom'
 
 function Orders() {
+  const navigate = useNavigate()
   const [orders, setOrders] = useState([])
 
   useEffect(() => {
@@ -24,8 +26,33 @@ function Orders() {
         </div>
       </div>
 
-      <div className="orders-sec">
-        <div>
+      <table className="orders-sec text-center">
+        <thead>
+
+          <tr className='orders-header'>
+            <td>Order ID</td>
+            <td>Items</td>
+            <td>Total Price</td>
+            <td>Status</td>
+            <td>Action</td>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            orders.map((item) => (
+              <tr className="orders-header" key={item.$id}>
+                <td>{item.$id}</td>
+                <td>{item.items.length}</td>
+                <td>{item.totalPrice}</td>
+                <td>{item.status}</td>
+                <td><button onClick={() => navigate(`/dashboard/order/${item.$id}`)} className='text-blue-500 underline'>view more</button></td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+      {/* <div className="orders-sec">
+        <div className='orders-header'>
           <div>Order ID</div>
           <div>Customer Name</div>
           <div>Location</div>
@@ -34,20 +61,25 @@ function Orders() {
         </div>
         {
           orders?.map((item) => (
-            <div tabIndex={0} className="collapse collapse-arrow bg-base-100 border-base-300 border" key={item.$id}>
-              <div className="collapse-title font-semibold">
-                <div>..{item.$id.slice(-6)}</div>
+            <div tabIndex={0} className="collapse collapse-arrow bg-base-100 border-base-300 border order-cont" key={item.$id}>
+              <div className="collapse-title font-semibold z-0">
+                <div>{item.$id}</div>
                 <div>{item.userName}</div>
                 <div>{item.shipingAddress}</div>
                 <div>{item.totalPrice}</div>
                 <div>{item.status}</div>
+                <div><button>more</button></div>
               </div>
-              <div className="collapse-content text-sm">
+              <div className="collapse-content text-sm cc">
+                <div className='order-header'>
+                  <div>Product Name</div>
+                  <div>Qty</div>
+                </div>
                 {
                   item.items?.map((p) => (
                     <div className="p" key={JSON.parse(p).$id}>
-                      {JSON.parse(p).item.productName}
-                      {JSON.parse(p).item.qty}
+                      <span>{JSON.parse(p).item.productName}</span>
+                      <span>{JSON.parse(p).item.qty}</span>
                     </div>
                   ))
                 }
@@ -55,7 +87,7 @@ function Orders() {
             </div>
           ))
         }
-      </div>
+      </div> */}
     </div>
   )
 }

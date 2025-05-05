@@ -9,6 +9,8 @@ function NewArrivals() {
     const search = useSelector((state) => state.product.filters?.search);
 
     useEffect(() => {
+    document.title = "SHOP.CO | E-COMMERCE STORE";
+
         appwriteService.getProducts().then((res) => {
             setProducts(res.documents)
         })

@@ -8,7 +8,7 @@ function CategoryBar() {
         appwriteService.getCategories().then((res) => setCategories(res.documents))
     }, [])
     return (
-        <div className='categoryBar'>
+        <div className='categoryBar custom-scrollbar'>
             {categories?.map((ctg) => {
                 return (
                     <div key={ctg.$id}>

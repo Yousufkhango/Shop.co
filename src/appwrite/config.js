@@ -326,7 +326,7 @@ export class Service {
     }
 
     // Order
-    async createOrder({ items, user_id, userName, shipingAddress, totalPrice, shipingCost }) {
+    async createOrder({ items, user_id, userPhone, userEmail, userName, shipingAddress, totalPrice, shipingCost }) {
         try {
             return await this.databases.createDocument(
                 conf.appwriteDatabaseId,
@@ -336,6 +336,8 @@ export class Service {
                     items,
                     user_id,
                     userName,
+                    userEmail,
+                    userPhone,
                     shipingAddress,
                     totalPrice,
                     shipingCost

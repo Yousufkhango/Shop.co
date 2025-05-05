@@ -14,7 +14,7 @@ const Cart = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
-  const discount = useSelector((state) => state.cart.items.map((item) => item.item.discount).map((disc) => Number(disc)).reduce((acc, disc) => acc + disc, 0));
+  const discount = useSelector((state) => state.cart.totalDiscount);
 
   const tcsCities = [
     { city: "Karachi", province: "Sindh", charges: 250 },
@@ -65,6 +65,8 @@ const Cart = () => {
   ];
   const [delivery, setDelivery] = useState(0)
   useEffect(() => {
+    document.title = "CART | SHOP.CO";
+
     setOrder(cart.items.map(obj => JSON.stringify(obj)))
     if (userAddress == undefined) {
       setDelivery(0)
@@ -76,11 +78,8 @@ const Cart = () => {
   }, [cart])
 
 
-
-
-
   const _checkOut = () => {
-    AppwriteService.createOrder({ items: order, user_id: user.$id, userName: user?.name, totalPrice: `${cart.totalPrice - discount + delivery}`, shipingAddress: userAddress.shipping_address + ',' + userAddress.city, shipingCost: `${delivery}` }).then((res) => document.getElementById('my_modal_3').showModal())
+    AppwriteService.createOrder({ items: order, user_id: user.$id, userEmail: user.email, userPhone: userAddress.phone, userName: user?.name, totalPrice: `${cart.totalPrice - discount + delivery}`, shipingAddress: userAddress.shipping_address + ',' + userAddress.city, shipingCost: `${delivery}` }).then((res) => document.getElementById('my_modal_3').showModal())
     dispatch(clearCart())
   }
   console.log('total', cart.totalPrice - discount + delivery)
@@ -118,6 +117,7 @@ const Cart = () => {
             <div className="ammounts">
               <div className="subtotal"><span>Subtotal</span><span className="flex"><span className=" text-[0.5rem]">Rs</span><span>{cart.totalPrice}</span></span></div>
               <div className="discount"><span>Discount: </span><span className="flex text-red-500"><span className=" text-[0.5rem]">Rs</span><span>{discount > 0 ? '-' : ''}{discount}</span></span></div>
+              {/* <button className="btn" onClick={() => dispatch(clearCart())}>clear cart</button> */}
               {
                 userAddress ?
                   <div className="delivery"><span>Delivery Charges: </span><span>{delivery}</span></div>

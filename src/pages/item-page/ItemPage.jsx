@@ -28,7 +28,9 @@ function ItemPage() {
     }
 
     useEffect(() => {
+        document.title = "SHOP.CO | E-COMMERCE WEBSITE";
         window.scrollTo(0, 0);
+
         if (slug) {
             appwriteService.getItem(slug).then((item) => {
                 if (item) {
@@ -77,7 +79,7 @@ function ItemPage() {
             alert("Item Out of Stock")
         }
         else {
-            const qtyItem = {...item, qty: count}
+            const qtyItem = { ...item, qty: count}
             dispatch(addItem(qtyItem))
         }
     }
@@ -119,19 +121,27 @@ function ItemPage() {
                     <div className="title">
                         <h1>{item.productName}</h1>
                     </div>
-                    <div className="price-section">
-                        <span className="price-span">
-                            <span>RS</span>
-                            <span className="price">{item.price - item.discount}</span>
-                        </span>
-                        <span className="price-span">
-                            <span>RS</span>
-                            <span className="price">{item.price}</span>
-                        </span>
-                        <div>
-                            {`-${Math.round(item.discount / item.price * 100)}% OFF`}
+                    {item.discount > 0 ?
+                        <div className="price-section">
+                            <span className="price-span">
+                                <span>RS</span>
+                                <span className="price">{item.price - item.discount}</span>
+                            </span>
+                            <span className="price-span">
+                                <span>RS</span>
+                                <span className="price">{item.price}</span>
+                            </span>
+                            <div>
+                                {`-${Math.round(item.discount / item.price * 100)}% OFF`}
+                            </div>
+                        </div> :
+                        <div className="price-section">
+                            <span className="price-span">
+                                <span>RS</span>
+                                <span className="price">{item.price - item.discount}</span>
+                            </span>
                         </div>
-                    </div>
+                    }
                     <div className="availablity">
                         <span className="label">Availablity</span>
                         <span className="stock">{item.stock == 'true' ? <span className='text-green-500'>In-Stock</span> : <span className='text-red-500'>Out-of-stock</span>}</span>
@@ -144,14 +154,14 @@ function ItemPage() {
                         <p>{item.description}</p>
                     </div>
                     {
-                        isInCart ? <button onClick={()=>navigate('/cart')} className='item-added'>GO TO CHECKOUT !</button> : <div className="order-btns">
+                        isInCart ? <button onClick={() => navigate('/cart')} className='item-added'>GO TO CHECKOUT !</button> : <div className="order-btns">
 
                             <div className="qty">
                                 <button onClick={handleDecrement}>−</button>
                                 <span className='count'>{count}</span>
                                 <button onClick={handleIncrement}>+</button>
                             </div>
-                            <button onClick={AddToCart} disabled={item.stock == 'false'? true:false} className={item.stock == 'false'? 'opacity-30': null}>Add To Cart</button>
+                            <button onClick={AddToCart} disabled={item.stock == 'false' ? true : false} className={item.stock == 'false' ? 'opacity-30' : null}>Add To Cart</button>
                         </div>
                     }
                 </div>

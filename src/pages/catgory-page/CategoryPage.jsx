@@ -12,9 +12,12 @@ function CategoryPage() {
   const search = useSelector((state) => state.product.filters?.search);
 
   useEffect(() => {
+    document.title = `${slug.toUpperCase()} | E-COMMERCE STORE`;
+
+
     appwriteService.getProducts([Query.equal('category', slug)]).then((res) => {
       setProducts(res.documents)
-    })
+    })    
   }, [])
 
   return (
