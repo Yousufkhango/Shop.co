@@ -24,7 +24,7 @@ const Home = () => {
       })
     }
     else{
-      console.log(userAddress)
+      // console.log(userAddress)
     }
 
   }, [user])

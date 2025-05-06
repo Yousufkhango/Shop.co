@@ -10,7 +10,7 @@ function Orders() {
   useEffect(() => {
     appwriteService.getOrders().then(res => setOrders(res.documents))
   }, [])
-  console.log(orders)
+  // console.log(orders)
 
   return (
     <div className="order-cont">

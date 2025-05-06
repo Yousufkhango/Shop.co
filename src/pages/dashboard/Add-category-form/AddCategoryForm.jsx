@@ -10,7 +10,7 @@ function AddCategoryForm() {
   const { register, handleSubmit, watch, setValue, formState: { errors } } = useForm();
   const productCategory = useSelector(state => state.product.products.map(item => item.category))
   // console.log('products',productCategory.filter(item => item == "acs-3030").length)
-  console.log('products',productCategory.filter(item => item == "acs-303").length)
+  // console.log('products',productCategory.filter(item => item == "acs-303").length)
 
   const onSubmit = async (data) => {
     // It Works
@@ -32,7 +32,7 @@ function AddCategoryForm() {
     appwriteService.getCategories().then((res) => setCategory(res.documents))
   }, [])
 
-  console.log('asdf', category)
+  // console.log('asdf', category)
   useEffect(() => {
     const subscription = watch((value, { name }) => {
       if (name === "categoryName") {

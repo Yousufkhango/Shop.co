@@ -102,7 +102,7 @@ function Profile() {
 
 
 
-    console.log('orders', orders)
+    // console.log('orders', orders)
 
     const formatDate = (isoString) => {
         const date = new Date(isoString);

@@ -13,7 +13,7 @@ function Signup() {
     const { register, handleSubmit } = useForm()
 
     const create = async (data) => {
-        console.log("account created", data)
+        // console.log("account created", data)
         setError("")
         try {
             const userData = await authService.createAccount(data)

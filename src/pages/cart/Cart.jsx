@@ -82,7 +82,7 @@ const Cart = () => {
     AppwriteService.createOrder({ items: order, user_id: user.$id, userEmail: user.email, userPhone: userAddress.phone, userName: user?.name, totalPrice: `${cart.totalPrice - discount + delivery}`, shipingAddress: userAddress.shipping_address + ',' + userAddress.city, shipingCost: `${delivery}` }).then((res) => document.getElementById('my_modal_3').showModal())
     dispatch(clearCart())
   }
-  console.log('total', cart.totalPrice - discount + delivery)
+  // console.log('total', cart.totalPrice - discount + delivery)
   return (
     <div className="cart-page">
       <div className="slug">

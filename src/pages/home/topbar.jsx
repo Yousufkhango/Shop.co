@@ -4,7 +4,7 @@ function Topbar() {
     return (
         <div className='topbar'>
             <div className="topbar-content">
-                <span>Sign up and get 20% off to your first order. <a href='/sign-up'> Sign-Up-Now</a></span>
+                <span>Sign up and place your first order. <a href='/sign-up'> Sign-Up-Now</a></span>
             </div>
         </div>
     )

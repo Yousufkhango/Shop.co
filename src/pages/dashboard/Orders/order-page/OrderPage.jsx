@@ -19,10 +19,10 @@ const OrderPage = () => {
             });
         }
     }, [slug]);
-    console.log(order)
+    // console.log(order)
 
     const onSubmit = async (e) => {
-        console.log('data', e)
+        // console.log('data', e)
         // e.preventDefault();
         // console.log(e)
         // const status = e.target.status.value;

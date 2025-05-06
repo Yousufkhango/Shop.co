@@ -11,9 +11,9 @@ function Navbar() {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const path = window.location.pathname.split('/')[1]
-    console.log('pathName',path)
+    // console.log('pathName',path)
     const cart = useSelector((state) => state.cart)
-    console.log('cart', cart)
+    // console.log('cart', cart)
     const searchInputRef = useRef(null);
     const auth = useSelector((state) => state.auth)
     const breakPoint = window.screen.width
